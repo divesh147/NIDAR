@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "110608692129",
+    "firebase_url": "https://nidar-dua.firebaseio.com",
+    "project_id": "nidar-dua",
+    "storage_bucket": "nidar-dua.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:110608692129:android:83d28b64527ab3c48e51e0",
+        "android_client_info": {
+          "package_name": "com.example.nidar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "110608692129-hjk5vme8se66qiqtertm37t0s4o1f02c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nidar",
+            "certificate_hash": "32d1de9cc189b1b80086023b209bd41eea1c5ba6"
+          }
+        },
+        {
+          "client_id": "110608692129-h2mnr2td3nc1molmjemgdpvea59emlt4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCutxNlatKf6UZEw-De4Ns6qWjklfRcIdo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "110608692129-h2mnr2td3nc1molmjemgdpvea59emlt4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

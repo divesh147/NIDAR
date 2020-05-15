@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">NIDAR</string>
+    <string name="phone_number">Phone Number (10 digit number)</string>
+    <string name="generate_otp">Generate OTP</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="verify_sign_in">Verify OTP and Sign In</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="contact_phone_number1">Contact 1\'s 10 digit Number [REQUIRED]</string>
+    <string name="contact_phone_number2">Contact 2\'s 10 digit Number [OPTIONAL]</string>
+    <string name="contact_phone_number3">Contact 3\'s 10 digit Number [OPTIONAL]</string>
+    <string name="contact_phone_number4">Contact 4\'s 10 digit Number [OPTIONAL]</string>
+    <string name="save_details">SAVE DETAILS</string>
+    <string name="update_details">UPDATE DETAILS</string>
+    <string name="otp_verification"><b>OTP Verification</b></string>
+    <string name="contact_details"><b>Contact Details</b></string>
+    <string name="user_registration"><b>User Registration</b></string>
+    <string name="speech_on">Turn ON Speech Recognition</string>
+    <string name="speech_off">Turn OFF Speech Recognition</string>
+    <string name="problem_text"><b>Are you in a problem?</b></string>
+    <string name="yes">Yes?</string>
+    <string name="no">No?</string>
+    <string name="low_battery_on">Turn ON Low Battery Message</string>
+    <string name="low_battery_off">Turn OFF Low Battery Message</string>
+    <string name="fall_detection_on">Turn ON Fall Detection</string>
+    <string name="fall_detection_off">Turn OFF Fall Detection</string>
+</resources>

@@ -1,0 +1,249 @@
+package com.example.nidar;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import android.Manifest;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.location.LocationManager;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
+import java.util.Hashtable;
+
+public class MainActivity extends AppCompatActivity {
+
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+    Button btnUpdateDetails, btnSpeechRecognition, btnLowBattery, btnFallDetection, btnSignOut;
+    BatteryLevelReceiver br;
+
+    public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 1;
+    private String[] permissions = {Manifest.permission.RECORD_AUDIO, Manifest.permission.SEND_SMS,
+            Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+    boolean flag = false;
+    Hashtable<String, Integer> permissionCheck;
+    private static boolean voiceBtn = false, batteryBtn = false, fallBtn = false;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        pref = getSharedPreferences("NIDAR", MODE_PRIVATE);
+        editor = pref.edit();
+
+        mainScreenDecider();
+        requestPermissions();
+        enableLocation();
+    }
+
+
+    // Initialise Different View Items
+    private void findViews() {
+        btnUpdateDetails = findViewById(R.id.btn_update_details);
+        btnSpeechRecognition = findViewById(R.id.btn_speech_recognition);
+        btnLowBattery = findViewById(R.id.btn_low_battery_message);
+        btnFallDetection = findViewById(R.id.btn_fall_detection);
+        btnSignOut = findViewById(R.id.btn_sign_out);
+    }
+
+
+    // Sets all buttons onClickListener
+    private void setAllButtons() {
+        btnUpdateDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.putBoolean("toUpdateData", true);
+                editor.commit();
+                startActivity(new Intent(MainActivity.this, SignedIn.class));
+                finish();
+            }
+        });
+
+        btnSpeechRecognition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SpeechService.class);
+                if (voiceBtn) {
+                    voiceBtn = false;
+                    btnSpeechRecognition.setText(R.string.speech_on);
+                    btnSpeechRecognition.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                    stopService(intent);
+                }
+                else {
+                    voiceBtn = true;
+                    btnSpeechRecognition.setText(R.string.speech_off);
+                    btnSpeechRecognition.setBackgroundColor(Color.RED);
+                    startService(intent);
+                }
+            }
+        });
+
+        btnLowBattery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (batteryBtn) {
+                    batteryBtn = false;
+                    Toast.makeText(MainActivity.this, "Broadcast Un-registered", Toast.LENGTH_LONG).show();
+                    btnLowBattery.setText(R.string.low_battery_on);
+                    btnLowBattery.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                    unregisterReceiver(br);
+                }
+                else {
+                    batteryBtn = true;
+                    Toast.makeText(MainActivity.this, "Broadcast Registered", Toast.LENGTH_LONG).show();
+                    btnLowBattery.setText(R.string.low_battery_off);
+                    btnLowBattery.setBackgroundColor(Color.RED);
+                    br = new BatteryLevelReceiver();
+                    registerReceiver(br, new IntentFilter(Intent.ACTION_BATTERY_LOW));
+                }
+            }
+        });
+
+        btnFallDetection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (fallBtn) {
+                    fallBtn = false;
+                    Toast.makeText(MainActivity.this, "Fall Detection turned off", Toast.LENGTH_LONG).show();
+                    btnFallDetection.setText(R.string.fall_detection_on);
+                    btnFallDetection.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                }
+                else {
+                    fallBtn = true;
+                    Toast.makeText(MainActivity.this, "Fall Detection turned on", Toast.LENGTH_LONG).show();
+                    btnFallDetection.setText(R.string.fall_detection_off);
+                    btnFallDetection.setBackgroundColor(Color.RED);
+                }
+            }
+        });
+
+        btnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                resetData();
+                Toast.makeText(MainActivity.this,"User Signed Out", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, MainActivity.class));
+                finish();
+            }
+        });
+    }
+
+
+    // Reset all saved data for initial Activity Deciding once again
+    private void resetData() {
+        editor.putBoolean("isDetailsSaved", false);
+        editor.putBoolean("isSignedIn", false);
+        editor.putString("phoneNumber", null);
+        editor.commit();
+    }
+
+
+    // Decide which Activity to open in the beginning
+    private void mainScreenDecider() {
+
+        // If user is signed in and has added his/her contact details
+        if (pref.getBoolean("isSignedIn", false) && pref.getBoolean("isDetailsSaved", false)) {
+            Toast.makeText(MainActivity.this,"WELCOME USER", Toast.LENGTH_SHORT).show();
+            findViews();
+            setAllButtons();
+        }
+
+        // If user is signed in but not added his/her contact details
+        else if (pref.getBoolean("isSignedIn", false)) {
+            startActivity(new Intent(MainActivity.this, SignedIn.class));
+            finish();
+        }
+
+        // If new user is signing up
+        else {
+            startActivity(new Intent(MainActivity.this, SignupUser.class));
+            finish();
+        }
+    }
+
+
+    private void requestPermissions() {
+        ArrayList<String> remainingPermission = new ArrayList<String>();
+
+        for (String permission: permissions) {
+            if (ContextCompat.checkSelfPermission(getApplicationContext(), permission) != PackageManager.PERMISSION_GRANTED)
+                remainingPermission.add(permission);
+        }
+
+        if (!remainingPermission.isEmpty()) {
+            ActivityCompat.requestPermissions(this, remainingPermission.toArray(new String[remainingPermission.size()]), REQUEST_ID_MULTIPLE_PERMISSIONS);
+        }
+    }
+
+
+    private void enableLocation() {
+        final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            buildAlertMessageNoGps();
+        }
+    }
+
+
+    private void buildAlertMessageNoGps() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, final int id) {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions, @NonNull  int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        permissionCheck = new Hashtable<String, Integer>();
+        for (int i = 0; i < permissions.length; i++) {
+            permissionCheck.put(permissions[i], 0);
+        }
+        if (requestCode == REQUEST_ID_MULTIPLE_PERMISSIONS && grantResults.length > 0) {
+            for (int i = 0; i < permissions.length; i++) {
+                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                    permissionCheck.put(permissions[i], 1);
+                }
+            }
+        }
+        for (String permission: permissionCheck.keySet()) {
+            if (permissionCheck.get(permission) != 1){
+                flag = true;
+                break;
+            }
+        }
+
+        if(flag)
+            requestPermissions();
+    }
+}

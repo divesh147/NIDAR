@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_contact_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="10pt"
+        android:text="@string/contact_details"/>
+
+    <EditText
+        android:id="@+id/et_contact_phone_number1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:autofillHints=""
+        android:hint="@string/contact_phone_number1"
+        android:inputType="phone"
+        android:textColor="@color/textColor"/>
+
+    <EditText
+        android:id="@+id/et_contact_phone_number2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:autofillHints=""
+        android:hint="@string/contact_phone_number2"
+        android:inputType="phone"
+        android:textColor="@color/textColor"/>
+
+    <EditText
+        android:id="@+id/et_contact_phone_number3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:autofillHints=""
+        android:hint="@string/contact_phone_number3"
+        android:inputType="phone"
+        android:textColor="@color/textColor"/>
+
+    <EditText
+        android:id="@+id/et_contact_phone_number4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:autofillHints=""
+        android:hint="@string/contact_phone_number4"
+        android:inputType="phone"
+        android:textColor="@color/textColor"/>
+
+    <Button
+        android:id="@+id/btn_save_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@color/colorAccent"
+        android:paddingStart="10pt"
+        android:paddingEnd="10pt"
+        android:layout_gravity="center"
+        android:text="@string/save_details"
+        android:textColor="@color/textColor"/>
+
+</LinearLayout>
