@@ -68,8 +68,6 @@ public class MainActivity extends AppCompatActivity {
         btnUpdateDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editor.putBoolean("toUpdateData", true);
-                editor.commit();
                 startActivity(new Intent(MainActivity.this, SignedIn.class));
                 finish();
             }

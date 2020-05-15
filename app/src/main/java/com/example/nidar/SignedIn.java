@@ -44,8 +44,7 @@ public class SignedIn extends AppCompatActivity {
         // Fetch user's phone number
         myPhoneNumber = pref.getString("phoneNumber", null);
 
-        if (pref.getBoolean("toUpdateData", false))
-            fetchOldData();
+        fetchOldData();
 
         btnSaveDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,25 +73,24 @@ public class SignedIn extends AppCompatActivity {
 
     // Fetch Old Saved Contacts
     private void fetchOldData() {
-        editor.putBoolean("toUpdateData", false);
-        editor.commit();
-
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("contacts").child(myPhoneNumber);
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String contact1 = dataSnapshot.child( "1" ).getValue().toString();
-                if (contact1.matches("[0-9]{10}"))
-                    contactPhoneNumber1.setText(contact1);
-                String contact2 = dataSnapshot.child( "2" ).getValue().toString();
-                if (contact2.matches("[0-9]{10}"))
-                    contactPhoneNumber2.setText(contact2);
-                String contact3 = dataSnapshot.child( "3" ).getValue().toString();
-                if (contact3.matches("[0-9]{10}"))
-                    contactPhoneNumber3.setText(contact3);
-                String contact4 = dataSnapshot.child( "4" ).getValue().toString();
-                if (contact4.matches("[0-9]{10}"))
-                    contactPhoneNumber4.setText(contact4);
+                if ((dataSnapshot.exists())) {
+                    String contact1 = dataSnapshot.child("1").getValue().toString();
+                    if (contact1.matches("[0-9]{10}"))
+                        contactPhoneNumber1.setText(contact1);
+                    String contact2 = dataSnapshot.child("2").getValue().toString();
+                    if (contact2.matches("[0-9]{10}"))
+                        contactPhoneNumber2.setText(contact2);
+                    String contact3 = dataSnapshot.child("3").getValue().toString();
+                    if (contact3.matches("[0-9]{10}"))
+                        contactPhoneNumber3.setText(contact3);
+                    String contact4 = dataSnapshot.child("4").getValue().toString();
+                    if (contact4.matches("[0-9]{10}"))
+                        contactPhoneNumber4.setText(contact4);
+                }
             }
 
             @Override
