@@ -3,13 +3,16 @@ package com.example.nidar;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.PowerManager;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -19,6 +22,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -47,16 +51,24 @@ public class SpeechService extends Service {
         String channelName = "My Background Service";
         NotificationChannel chan = new NotificationChannel(CHANNEL_ID, channelName, NotificationManager.IMPORTANCE_NONE);
         chan.setLightColor(Color.BLUE);
-        chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+        chan.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         assert manager != null;
         manager.createNotificationChannel(chan);
 
+        // On tapping the notification, it will open the application's main activity
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,  PendingIntent.FLAG_UPDATE_CURRENT);
+
+
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, CHANNEL_ID);
         Notification notification = notificationBuilder.setOngoing(true)
+                .setSmallIcon(R.drawable.ic_android_black_24dp)
                 .setContentTitle("App is running in background")
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setCategory(Notification.CATEGORY_SERVICE)
+                .setContentText("Tap to open the application")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent)
                 .build();
         startForeground(2, notification);
     }
@@ -107,9 +119,9 @@ public class SpeechService extends Service {
                         Intent intent = new Intent(SpeechService.this, OwnDialog.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        /*intent.setAction(Intent.ACTION_VIEW);*/
-                        stopSelf();
+                        intent.setAction(Intent.ACTION_VIEW);
                         startActivity(intent);
+                        stopSelf();
                     }
                     else {
                         resetSpeechRecognizer();
@@ -133,28 +145,6 @@ public class SpeechService extends Service {
                 @Override
                 public void onPartialResults(Bundle partialResults) {
                     Log.i(LOG_TAG, "onPartialResults");
-                    final ArrayList<String> matches = partialResults.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-
-                    String gotText = matches.get(0).toLowerCase();
-                    Log.i(LOG_TAG, gotText);
-
-                    boolean flag = false;
-                    for (String panicWords: keyWords) {
-                        if (gotText.contains(panicWords)) {
-                            flag = true;
-                            break;
-                        }
-                    }
-
-                    if (flag) {
-                        Log.i("test", "In flag = true");
-                        Intent intent = new Intent(SpeechService.this, OwnDialog.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        /*intent.setAction(Intent.ACTION_VIEW);*/
-                        stopSelf();
-                        startActivity(intent);
-                    }
                 }
 
                 @Override
@@ -168,7 +158,6 @@ public class SpeechService extends Service {
                 }
             });
     }
-
 
     public String getErrorText(int errorCode) {
         String message;

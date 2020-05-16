@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
         android:allowBackup="true"
@@ -29,7 +30,9 @@
         <activity android:name=".OwnDialog"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog"
             android:excludeFromRecents="true"
-            android:showOnLockScreen="true">
+            android:showOnLockScreen="true"
+            android:launchMode="singleTask"
+            android:taskAffinity="">
         </activity>
         <activity android:name=".myAlertDialog"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog"
