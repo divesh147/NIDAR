@@ -12,6 +12,7 @@ public class BatteryLevelReceiver extends BroadcastReceiver {
         if (Intent.ACTION_BATTERY_LOW.equals(intent.getAction())) {
             Toast.makeText(context, "LOW BATTERY", Toast.LENGTH_SHORT).show();
             Intent intent1 = new Intent(context, OwnDialog.class);
+            intent1.putExtra("Title", "Battery Low! Do we send an alert?");
             context.startActivity(intent1);
         }
     }

@@ -120,6 +120,7 @@ public class SpeechService extends Service {
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         intent.setAction(Intent.ACTION_VIEW);
+                        intent.putExtra("Title", "Are You In A Problem?");
                         startActivity(intent);
                         stopSelf();
                     }

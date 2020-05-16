@@ -22,6 +22,7 @@ import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -49,6 +50,7 @@ public class OwnDialog extends AppCompatActivity {
     private LocationManager locationManager;
     private PowerManager powerManager;
     private PowerManager.WakeLock wakeLock;
+    private TextView textView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,11 +65,9 @@ public class OwnDialog extends AppCompatActivity {
         if(!isScreenAwake){
             wakeLock = powerManager.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK |PowerManager.ACQUIRE_CAUSES_WAKEUP, "myApp:notificationLock");
             wakeLock.acquire(3000); //set your time in milliseconds
-            Log.i("Dialog", "1");
             createAlertDialog();
         }
         else {
-            Log.i("Dialog", "2");
             createAlertDialog();
         }
 
@@ -87,6 +87,10 @@ public class OwnDialog extends AppCompatActivity {
 
     private void createAlertDialog(){
 
+            String serviceName = getIntent().getStringExtra("Title");
+
+            textView = findViewById(R.id.tv_problem);
+            textView.setText(serviceName);
             final Vibrator vib = (Vibrator) getSystemService(VIBRATOR_SERVICE);
             vib.vibrate(200); // To vibrate phone till button is clicked
 
