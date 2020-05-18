@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
     BatteryLevelReceiver br;
 
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 1;
-    private String[] permissions = {Manifest.permission.RECORD_AUDIO, Manifest.permission.SEND_SMS,
+    private String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.RECORD_AUDIO, Manifest.permission.SEND_SMS,
             Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     boolean flag = false;
     Hashtable<String, Integer> permissionCheck;
@@ -45,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         pref = getSharedPreferences("NIDAR", MODE_PRIVATE);
-        editor = pref.edit();
 
         mainScreenDecider();
         requestPermissions();
@@ -116,17 +116,18 @@ public class MainActivity extends AppCompatActivity {
         btnFallDetection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, FallService.class);
                 if (fallBtn) {
                     fallBtn = false;
-                    Toast.makeText(MainActivity.this, "Fall Detection turned off", Toast.LENGTH_LONG).show();
                     btnFallDetection.setText(R.string.fall_detection_on);
                     btnFallDetection.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                    stopService(intent);
                 }
                 else {
                     fallBtn = true;
-                    Toast.makeText(MainActivity.this, "Fall Detection turned on", Toast.LENGTH_LONG).show();
                     btnFallDetection.setText(R.string.fall_detection_off);
                     btnFallDetection.setBackgroundColor(Color.RED);
+                    startService(intent);
                 }
             }
         });
@@ -146,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Reset all saved data for initial Activity Deciding once again
     private void resetData() {
+        editor = pref.edit();
         editor.putBoolean("isDetailsSaved", false);
         editor.putBoolean("isSignedIn", false);
         editor.putString("phoneNumber", null);
@@ -224,8 +226,8 @@ public class MainActivity extends AppCompatActivity {
                                            @NonNull String[] permissions, @NonNull  int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         permissionCheck = new Hashtable<String, Integer>();
-        for (int i = 0; i < permissions.length; i++) {
-            permissionCheck.put(permissions[i], 0);
+        for (String s : permissions) {
+            permissionCheck.put(s, 0);
         }
         if (requestCode == REQUEST_ID_MULTIPLE_PERMISSIONS && grantResults.length > 0) {
             for (int i = 0; i < permissions.length; i++) {

@@ -7,12 +7,11 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.PowerManager;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -22,7 +21,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -75,6 +73,8 @@ public class SpeechService extends Service {
 
 
     private void resetSpeechRecognizer() {
+        AudioManager audioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+        audioManager.setStreamMute(AudioManager.STREAM_MUSIC, true);
         if (speech != null) {
             speech.destroy();
         }
@@ -121,6 +121,7 @@ public class SpeechService extends Service {
                         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         intent.setAction(Intent.ACTION_VIEW);
                         intent.putExtra("Title", "Are You In A Problem?");
+                        intent.putExtra("Calling Class", "Speech Service");
                         startActivity(intent);
                         stopSelf();
                     }

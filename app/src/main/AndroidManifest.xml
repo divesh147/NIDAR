@@ -11,6 +11,8 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -27,6 +29,8 @@
         </activity>
         <activity android:name=".SignedIn"/>
         <activity android:name=".SignupUser"/>
+        <activity android:name=".FallTest"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <activity android:name=".OwnDialog"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog"
             android:excludeFromRecents="true"
@@ -34,12 +38,9 @@
             android:launchMode="singleTask"
             android:taskAffinity="">
         </activity>
-        <activity android:name=".myAlertDialog"
-            android:theme="@style/Theme.AppCompat.DayNight.Dialog"
-            android:excludeFromRecents="true"
-            android:showOnLockScreen="true">
-        </activity>
+
         <service android:name=".SpeechService" android:exported="false"/>
+        <service android:name=".FallService" android:exported="false"/>
         <receiver android:name=".BatteryLevelReceiver"/>
     </application>
 
