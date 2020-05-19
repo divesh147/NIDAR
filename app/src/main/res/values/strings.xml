@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">NIDAR</string>
+    <string name="user_name">Name</string>
     <string name="phone_number">Phone Number (10 digit number)</string>
     <string name="generate_otp">Generate OTP</string>
     <string name="enter_otp">Enter OTP</string>

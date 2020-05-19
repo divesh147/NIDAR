@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,7 +27,7 @@ public class SignupUser extends AppCompatActivity {
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     Button btnGenerateOTP, btnSignIn;
-    EditText etPhoneNumber, etOTP;
+    TextInputEditText etPhoneNumber, etOTP;
     String phoneNumber, otp;
     FirebaseAuth auth;
 

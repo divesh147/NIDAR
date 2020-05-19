@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,7 +25,7 @@ public class SignedIn extends AppCompatActivity {
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     Button btnSaveDetails;
-    EditText contactPhoneNumber1, contactPhoneNumber2, contactPhoneNumber3, contactPhoneNumber4;
+    TextInputEditText contactPhoneNumber1, contactPhoneNumber2, contactPhoneNumber3, contactPhoneNumber4;
     String myPhoneNumber, contactNumber1, contactNumber2, contactNumber3, contactNumber4;
     FirebaseDatabase mDatabase;
     DatabaseReference databaseReference;
