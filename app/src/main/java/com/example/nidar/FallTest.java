@@ -112,7 +112,7 @@ public class FallTest extends Activity implements SensorEventListener {
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         intent.setAction(Intent.ACTION_VIEW);
-                        intent.putExtra("Title", "Are You In A Problem?");
+                        intent.putExtra("Title", "Did you fall?");
                         intent.putExtra("Calling Class", "Fall Service");
                         startActivity(intent);
                     }

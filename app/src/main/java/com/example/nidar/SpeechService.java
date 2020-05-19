@@ -65,7 +65,7 @@ public class SpeechService extends Service {
                 .setSmallIcon(R.drawable.ic_android_black_24dp)
                 .setContentTitle("App is running in background")
                 .setContentText("Tap to open the application")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setContentIntent(pendingIntent)
                 .build();
         startForeground(2, notification);
