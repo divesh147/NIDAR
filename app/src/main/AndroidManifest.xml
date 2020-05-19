@@ -29,8 +29,6 @@
         </activity>
         <activity android:name=".SignedIn"/>
         <activity android:name=".SignupUser"/>
-        <activity android:name=".FallTest"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <activity android:name=".OwnDialog"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog"
             android:excludeFromRecents="true"
@@ -41,6 +39,7 @@
 
         <service android:name=".SpeechService" android:exported="false"/>
         <service android:name=".FallService" android:exported="false"/>
+        <service android:name=".FallTest" android:exported="false"/>
         <receiver android:name=".BatteryLevelReceiver"/>
     </application>
 

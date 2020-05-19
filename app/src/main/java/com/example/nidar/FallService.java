@@ -18,7 +18,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.IBinder;
-import android.os.Vibrator;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -136,14 +135,9 @@ public class FallService extends Service implements SensorEventListener {
             if (shock_time - free_fall_time <= 800) {
                 appendLog("Suspected Fall");
                 sensorManager.unregisterListener(this);
-                Vibrator vib = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-                vib.vibrate(2000);
                 // Check for person unconscious behaviour
                 Intent intent = new Intent(FallService.this, FallTest.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                intent.setAction(Intent.ACTION_VIEW);
-                startActivity(intent);
+                startService(intent);
                 stopSelf();
             }
             min = max = false;
@@ -173,7 +167,6 @@ public class FallService extends Service implements SensorEventListener {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Toast.makeText(this, "Fall Service Stopped", Toast.LENGTH_LONG).show();
         sensorManager.unregisterListener(this);
     }
 
