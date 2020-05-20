@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     boolean flag = false;
     Hashtable<String, Integer> permissionCheck;
-    private static boolean voiceBtn = false, batteryBtn = false, fallBtn = false;
+    private static boolean voiceBtn, batteryBtn, fallBtn;
 
 
     @Override
@@ -63,6 +63,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    // Set background color and text of views
+    private void setViews() {
+        voiceBtn = pref.getBoolean("isSpeechOn", false);
+        if (!voiceBtn) {
+            btnSpeechRecognition.setText(R.string.speech_on);
+            btnSpeechRecognition.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        }
+        else {
+            btnSpeechRecognition.setText(R.string.speech_off);
+            btnSpeechRecognition.setBackgroundColor(Color.RED);
+        }
+
+        batteryBtn = pref.getBoolean("isBatteryLowOn", false);
+        if (!batteryBtn) {
+            btnLowBattery.setText(R.string.low_battery_on);
+            btnLowBattery.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        }
+        else {
+            btnLowBattery.setText(R.string.low_battery_off);
+            btnLowBattery.setBackgroundColor(Color.RED);
+        }
+
+        fallBtn = pref.getBoolean("isFallOn", false);
+        if (!fallBtn) {
+            btnFallDetection.setText(R.string.fall_detection_on);
+            btnFallDetection.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        }
+        else {
+            btnFallDetection.setText(R.string.fall_detection_off);
+            btnFallDetection.setBackgroundColor(Color.RED);
+        }
+    }
+
+
     // Sets all buttons onClickListener
     private void setAllButtons() {
         btnUpdateDetails.setOnClickListener(new View.OnClickListener() {
@@ -77,14 +111,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SpeechService.class);
+                voiceBtn = pref.getBoolean("isSpeechOn", false);
                 if (voiceBtn) {
                     voiceBtn = false;
+                    editor = pref.edit();
+                    editor.putBoolean("isSpeechOn", voiceBtn);
+                    editor.commit();
                     btnSpeechRecognition.setText(R.string.speech_on);
-                    btnSpeechRecognition.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                    btnSpeechRecognition.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                     stopService(intent);
                 }
                 else {
                     voiceBtn = true;
+                    editor = pref.edit();
+                    editor.putBoolean("isSpeechOn", voiceBtn);
+                    editor.commit();
                     btnSpeechRecognition.setText(R.string.speech_off);
                     btnSpeechRecognition.setBackgroundColor(Color.RED);
                     startService(intent);
@@ -95,15 +136,22 @@ public class MainActivity extends AppCompatActivity {
         btnLowBattery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                batteryBtn = pref.getBoolean("isBatteryLowOn", false);
                 if (batteryBtn) {
                     batteryBtn = false;
+                    editor = pref.edit();
+                    editor.putBoolean("isBatteryLowOn", batteryBtn);
+                    editor.commit();
                     Toast.makeText(MainActivity.this, "Broadcast Un-registered", Toast.LENGTH_LONG).show();
                     btnLowBattery.setText(R.string.low_battery_on);
-                    btnLowBattery.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                    btnLowBattery.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                     unregisterReceiver(br);
                 }
                 else {
                     batteryBtn = true;
+                    editor = pref.edit();
+                    editor.putBoolean("isBatteryLowOn", batteryBtn);
+                    editor.commit();
                     Toast.makeText(MainActivity.this, "Broadcast Registered", Toast.LENGTH_LONG).show();
                     btnLowBattery.setText(R.string.low_battery_off);
                     btnLowBattery.setBackgroundColor(Color.RED);
@@ -117,14 +165,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, FallService.class);
+                fallBtn = pref.getBoolean("isFallOn", false);
                 if (fallBtn) {
                     fallBtn = false;
+                    editor = pref.edit();
+                    editor.putBoolean("isFallOn", fallBtn);
+                    editor.commit();
                     btnFallDetection.setText(R.string.fall_detection_on);
-                    btnFallDetection.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                    btnFallDetection.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                     stopService(intent);
                 }
                 else {
                     fallBtn = true;
+                    editor = pref.edit();
+                    editor.putBoolean("isFallOn", fallBtn);
+                    editor.commit();
                     btnFallDetection.setText(R.string.fall_detection_off);
                     btnFallDetection.setBackgroundColor(Color.RED);
                     startService(intent);
@@ -162,6 +217,7 @@ public class MainActivity extends AppCompatActivity {
         if (pref.getBoolean("isSignedIn", false) && pref.getBoolean("isDetailsSaved", false)) {
             Toast.makeText(MainActivity.this,"WELCOME USER", Toast.LENGTH_SHORT).show();
             findViews();
+            setViews();
             setAllButtons();
         }
 
