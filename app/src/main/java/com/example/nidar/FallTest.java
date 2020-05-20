@@ -197,7 +197,8 @@ public class FallTest extends Service implements SensorEventListener {
 
     @Override
     public void onTaskRemoved(Intent intent) {
-        Intent restartServiceIntent = new Intent(getApplicationContext(), this.getClass());
+        Log.i(LOG_TAG, "onTaskRemoved");
+        Intent restartServiceIntent = new Intent(getApplicationContext(), FallService.class);
         restartServiceIntent.setPackage(getPackageName());
         startService(restartServiceIntent);
         super.onTaskRemoved(intent);

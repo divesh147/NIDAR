@@ -180,6 +180,7 @@ public class FallService extends Service implements SensorEventListener {
 
     @Override
     public void onTaskRemoved(Intent intent) {
+        Log.i(LOG_TAG, "onTaskRemoved");
         Intent restartServiceIntent = new Intent(getApplicationContext(), this.getClass());
         restartServiceIntent.setPackage(getPackageName());
         startService(restartServiceIntent);
