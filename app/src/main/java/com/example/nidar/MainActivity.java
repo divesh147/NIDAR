@@ -136,27 +136,26 @@ public class MainActivity extends AppCompatActivity {
         btnLowBattery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, BatteryService.class);
                 batteryBtn = pref.getBoolean("isBatteryLowOn", false);
                 if (batteryBtn) {
                     batteryBtn = false;
                     editor = pref.edit();
                     editor.putBoolean("isBatteryLowOn", batteryBtn);
                     editor.commit();
-                    Toast.makeText(MainActivity.this, "Broadcast Un-registered", Toast.LENGTH_LONG).show();
                     btnLowBattery.setText(R.string.low_battery_on);
                     btnLowBattery.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-                    unregisterReceiver(br);
+                    stopService(intent);
                 }
                 else {
                     batteryBtn = true;
                     editor = pref.edit();
                     editor.putBoolean("isBatteryLowOn", batteryBtn);
                     editor.commit();
-                    Toast.makeText(MainActivity.this, "Broadcast Registered", Toast.LENGTH_LONG).show();
                     btnLowBattery.setText(R.string.low_battery_off);
                     btnLowBattery.setBackgroundColor(Color.RED);
                     br = new BatteryLevelReceiver();
-                    registerReceiver(br, new IntentFilter(Intent.ACTION_BATTERY_LOW));
+                    startService(intent);
                 }
             }
         });

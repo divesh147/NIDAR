@@ -70,7 +70,7 @@ public class OwnDialog extends AppCompatActivity {
         TextView textView = findViewById(R.id.tv_problem);
         textView.setText(title);
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.song);
+        mediaPlayer = MediaPlayer.create(this, R.raw.sos);
         mediaPlayer.setLooping(true);
         mediaPlayer.start();
         Button no = findViewById(R.id.No);

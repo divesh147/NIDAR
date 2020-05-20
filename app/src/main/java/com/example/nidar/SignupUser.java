@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,8 +26,8 @@ public class SignupUser extends AppCompatActivity {
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     Button btnGenerateOTP, btnSignIn;
-    TextInputEditText etPhoneNumber, etOTP;
-    String phoneNumber, otp;
+    TextInputEditText etName, etPhoneNumber, etOTP;
+    String name, phoneNumber, otp;
     FirebaseAuth auth;
 
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback;
@@ -40,7 +39,6 @@ public class SignupUser extends AppCompatActivity {
         setContentView(R.layout.activity_signup_user);
 
         pref = getSharedPreferences("NIDAR", MODE_PRIVATE);
-        editor = pref.edit();
         findViews1();
 
         StartFirebaseLogin();
@@ -48,6 +46,7 @@ public class SignupUser extends AppCompatActivity {
         btnGenerateOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                name = etName.getText().toString();
                 phoneNumber = etPhoneNumber.getText().toString();
 
                 PhoneAuthProvider.getInstance().verifyPhoneNumber(
@@ -67,7 +66,9 @@ public class SignupUser extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            editor = pref.edit();
                             editor.putBoolean("isSignedIn", true);
+                            editor.putString("name", name);
                             editor.putString("phoneNumber", phoneNumber);
                             editor.commit();
 
@@ -75,7 +76,7 @@ public class SignupUser extends AppCompatActivity {
                             finish();
                         }
                         else {
-                            Toast.makeText(SignupUser.this,"Incorrect OTP", Toast.LENGTH_SHORT).show();
+                            etOTP.setError("Incorrect OTP");
                         }
                     }
                 });
@@ -84,6 +85,7 @@ public class SignupUser extends AppCompatActivity {
     // Initialise View Items of first Screen that is generating OTP
     private void findViews1() {
         btnGenerateOTP = findViewById(R.id.btn_generate_otp);
+        etName = findViewById(R.id.et_name);
         etPhoneNumber = findViewById(R.id.et_phone_number);
     }
 

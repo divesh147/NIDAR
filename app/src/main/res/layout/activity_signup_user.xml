@@ -14,14 +14,13 @@
         android:paddingTop="30dp"
         android:paddingBottom="30dp"
         android:background="#FFF"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical">
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/fearless">
-        </ImageView>
+            android:contentDescription="@string/app_icon"
+            android:src="@drawable/fearless"/>
 
         <TextView
             android:id="@+id/tv_user_registration"
@@ -30,11 +29,7 @@
             android:textAlignment="center"
             android:fontFamily="sans-serif-black"
             android:textColor="@color/colorPrimary"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:textAppearance="@color/colorPrimary"
+            android:layout_margin="20dp"
             android:textSize="10pt"
             android:text="@string/user_registration"/>
 
@@ -51,7 +46,7 @@
             android:textColor="@color/textColor">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etname"
+                android:id="@+id/et_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

@@ -14,7 +14,6 @@
         android:paddingTop="30dp"
         android:paddingBottom="30dp"
         android:background="#FFF"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical">
 
         <TextView
@@ -23,11 +22,8 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:fontFamily="sans-serif-black"
-            android:layout_marginTop="60dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:textAppearance="@color/colorPrimary"
+            android:layout_margin="20dp"
+            android:textColor="@color/colorPrimary"
             android:textSize="10pt"
             android:text="@string/contact_details"/>
 

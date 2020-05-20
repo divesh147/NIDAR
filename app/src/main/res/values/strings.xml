@@ -24,4 +24,5 @@
     <string name="low_battery_off">Turn OFF Low Battery Message</string>
     <string name="fall_detection_on">Turn ON Fall Detection</string>
     <string name="fall_detection_off">Turn OFF Fall Detection</string>
+    <string name="app_icon">App Icon</string>
 </resources>

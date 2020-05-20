@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
     android:orientation="vertical">
-    <!--android:id="@+id/text"-->
 
     <TextView
         android:id="@+id/tv_problem"
@@ -19,19 +18,25 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/Yes"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/Yes"
-            android:layout_weight="1"
             android:layout_margin="20dp"
-            android:text="@string/yes"/>
+            android:layout_weight="1"
+            android:background="@drawable/buttonshape"
+            android:text="@string/yes"
+            android:textColor="@color/textColor"/>
 
         <Button
+            android:id="@+id/No"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/No"
-            android:layout_weight="1"
             android:layout_margin="20dp"
-            android:text="@string/no" />
+            android:layout_weight="1"
+            android:background="@drawable/buttonshape"
+            android:text="@string/no"
+            android:textColor="@color/textColor"/>
     </LinearLayout>
 </LinearLayout>
