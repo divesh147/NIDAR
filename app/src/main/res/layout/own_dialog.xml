@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
+    android:background="@drawable/layout_shape"
     android:orientation="vertical">
 
     <TextView
@@ -24,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:layout_weight="1"
-            android:background="@drawable/buttonshape"
+            android:background="@drawable/button_shape"
             android:text="@string/yes"
             android:textColor="@color/textColor"/>
 
@@ -35,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:layout_weight="1"
-            android:background="@drawable/buttonshape"
+            android:background="@drawable/button_shape"
             android:text="@string/no"
             android:textColor="@color/textColor"/>
     </LinearLayout>
