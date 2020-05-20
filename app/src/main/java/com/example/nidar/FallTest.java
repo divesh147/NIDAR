@@ -193,4 +193,13 @@ public class FallTest extends Service implements SensorEventListener {
     public IBinder onBind(Intent intent) {
         return null;
     }
+
+
+    @Override
+    public void onTaskRemoved(Intent intent) {
+        Intent restartServiceIntent = new Intent(getApplicationContext(), this.getClass());
+        restartServiceIntent.setPackage(getPackageName());
+        startService(restartServiceIntent);
+        super.onTaskRemoved(intent);
+    }
 }
