@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -39,7 +40,9 @@
             app:startIconTint="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:autofillHints=""
             android:hint="@string/email"
             app:hintTextColor="@color/colorPrimary"
@@ -49,7 +52,7 @@
                 android:id="@+id/et_Email"
                 android:inputType="textEmailAddress"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -59,7 +62,9 @@
             app:startIconTint="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:autofillHints=""
             android:hint="@string/feedback"
             app:hintTextColor="@color/colorPrimary">
@@ -68,7 +73,6 @@
                 android:id="@+id/et_Feedback"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="phone"
                 android:textColor="@color/textColor"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -77,12 +81,14 @@
             android:id="@+id/btn_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:background="@drawable/button_shape"
             android:paddingStart="10pt"
             android:paddingEnd="10pt"
             android:layout_gravity="center"
             android:text="@string/send"
-            android:textColor="@color/textColor" />
+            android:textColor="@color/textColor"/>
     </LinearLayout>
 </LinearLayout>

@@ -39,35 +39,85 @@
     <string name="fall_detection">Fall Detection</string>
     <string name="battery_manager">Battery Manager</string>
     <string name="activation_process">Activation Process</string>
-
     <string name="update_details_guide">Update Details</string>
 
     <string name="overview_guide">
-        “Nidar - Universal Safety Application” is a personal safety and security application. It takes the necessary actions
-        to bring effective help to you. This includes sending alert messages and siren alarm.
+        <![CDATA[
+            <html>
+                <head></head>
+                <body style="text-align:justify;color:black;">
+                    “Nidar - Universal Safety Application” is a personal safety and security application. It takes
+                    the necessary actions to bring effective help to you. This includes sending alert messages and
+                    siren alarm.
+                </body>
+            </html>
+        ]]>
     </string>
+
     <string name="speech_recognition_guide">
-        NIDAR can be activated by voice commands. You only need to say \"\", \"\", \"\", \"\". It is better to say one of these keywords multiple
-        times to have higher chance of getting NIDAR activated. Speech Recognition will work even when your mobile phone is locked or
-        is kept away from you. Once any of the defined keywords are detected, a dialog will be prompted asking for the same.
-        If dialog is not answered within a time frame, an alert message will be send containing your location.
+        <![CDATA[
+            <html>
+                <head></head>
+                <body style="text-align:justify;color:black;">
+                    NIDAR can be activated by voice commands. You only need to say “”, “”, “”, “”. It is
+                    better to say one of these keywords multiple times to have a higher chance of getting NIDAR
+                    activated. Speech Recognition will work even when your mobile phone is locked or is kept away
+                    from you. Once any of the defined keywords are detected, a dialog will be prompted asking for
+                    the same. If dialog is not answered within a time frame, an alert message will be sent containing
+                    your location.
+                </body>
+            </html>
+        ]]>
     </string>
+
     <string name="fall_detection_guide">
-        NIDAR also detects when you fall. Once, a fall is detected, a dialog will be prompted asking for the same.
-        If dialog is not answered within a time frame, an alert message will be send containing your location.
+        <![CDATA[
+            <html>
+                <head></head>
+                <body style="text-align:justify;color:black;">
+                    NIDAR also detects when you fall. Once, a fall is detected, a dialog will be prompted asking for
+                    the same. If dialog is not answered within a time frame, an alert message will be sent containing
+                    your location.
+                </body>
+            </html>
+        ]]>
     </string>
+
     <string name="battery_manager_guide">
-        NIDAR keeps track of your battery level. When the battery level is too low, a dialog will be prompted asking for the same.
-        If dialog is not answered within a time frame, an alert message will be send containing your location.
+        <![CDATA[
+            <html>
+                <head></head>
+                <body style="text-align:justify;color:black;">
+                    NIDAR keeps track of your battery level. When the battery level is too low, a dialog will be
+                    prompted asking for the same. If dialog is not answered within a time frame, an alert message
+                    will be sent containing your location.
+                </body>
+            </html>
+        ]]>
+
     </string>
+
     <string name="activation_process_guide">
-        To start "Speech Recognition", "Fall Detection", "Battery Manager", just click on the buttons on the main activity. Once clicked,
-        all the services will be activated and will ensure your security. The timings for the alert dialog will be for about 15 seconds.
-        You can also update the contact details by clicking on the "Update Details" button.
+        <![CDATA[
+            <html>
+                <head></head>
+                <body style="text-align:justify;color:black;">
+                    To start “Speech Recognition”, “Fall Detection”, “Battery Manager”, just click on the respective
+                    buttons on the main activity. Once clicked, service respective to that button will be activated
+                    and will ensure your security. The timings for the alert dialog will be for about 15 seconds. It
+                    is mandatory to enable GPS beforehand for proper functioning of app. You can also update the
+                    contact details by clicking on the “Update Details“ button.
+                </body>
+            </html>
+        ]]>
     </string>
 
     <string name="developed_by">Developed By</string>
     <string name="supervised_by">Supervised By</string>
-
+    <string name="tanya_dua">Tanya Dua</string>
+    <string name="divesh_bhagat">Divesh Bhagat</string>
+    <string name="nitin_thakur">Nitin Thakur</string>
+    <string name="p_k_hazra">P. K. Hazra</string>
+    <string name="sushila_madan">Sushila Madan</string>
 
 </resources>

@@ -4,28 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.nidar.MainActivity" >
 
-
     <item
         android:id="@+id/guide"
-        android:icon="@drawable/ic_error_black_24dp"
+        android:icon="@drawable/ic_guide_24dp"
         android:title="@string/guide"
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/nav_help_feedback"
+        android:id="@+id/help_and_feedback"
         android:icon="@drawable/ic_question_answer_black_24dp"
         android:title="@string/menu_help_feedback"
-        app:showAsAction="never" />
+        app:showAsAction="never"/>
 
     <item
-        android:id="@+id/about"
-        android:icon="@drawable/ic_error_black_24dp"
+        android:id="@+id/about_us"
+        android:icon="@drawable/ic_about_us_24dp"
         android:title="@string/menu_about"
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/nav_signout"
+        android:id="@+id/signout"
         android:icon="@drawable/ic_index"
         android:title="@string/menu_signout"
-        app:showAsAction="never" />
+        app:showAsAction="never"/>
 </menu>

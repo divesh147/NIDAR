@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -48,7 +49,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,7 +73,6 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <Button
             android:id="@+id/btn_generate_otp"
             android:layout_width="wrap_content"
@@ -83,6 +83,6 @@
             android:paddingEnd="10pt"
             android:layout_gravity="center"
             android:text="@string/generate_otp"
-            android:textColor="@color/textColor" />
+            android:textColor="@color/textColor"/>
     </LinearLayout>
 </LinearLayout>

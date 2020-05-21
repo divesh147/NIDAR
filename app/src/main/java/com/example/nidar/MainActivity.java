@@ -80,16 +80,15 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.nav_help_feedback) {
+        if (id == R.id.help_and_feedback) {
             Toast.makeText(this, "Help and Feedback", Toast.LENGTH_LONG).show();
             startActivity(new Intent(MainActivity.this, HelpFeedback.class));
             return true;
         }
 
-        if (id == R.id.about) {
-            Toast.makeText(this, "Help and Feedback", Toast.LENGTH_LONG).show();
+        if (id == R.id.about_us) {
+            Toast.makeText(this, "About Us", Toast.LENGTH_LONG).show();
             startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
-
             return true;
         }
 
@@ -99,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
-        if (id == R.id.nav_signout) {
+        if (id == R.id.signout) {
             FirebaseAuth.getInstance().signOut();
             resetData();
             Toast.makeText(MainActivity.this,"User Signed Out", Toast.LENGTH_SHORT).show();
