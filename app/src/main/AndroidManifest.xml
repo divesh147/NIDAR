@@ -35,6 +35,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".SignupUser"
             android:screenOrientation="portrait"/>
+        <activity android:name=".AboutUsActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".OwnDialog"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog"
             android:excludeFromRecents="true"

@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (id == R.id.about) {
-            Toast.makeText(this, "About", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
             return true;
         }
 
