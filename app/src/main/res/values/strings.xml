@@ -28,5 +28,46 @@
 	<string name="menu_signout">Signout</string>
     <string name="menu_help_feedback">Help and Feedback</string>
     <string name="menu_invite_friends">Invite Friends</string>
-    <string name="menu_about">About</string>
+    <string name="menu_about">About Us</string>
+    <string name="feedback">Feedback</string>
+    <string name="email">Email</string>
+    <string name="feedback_text">Feedback</string>
+    <string name="send">Send</string>
+    <string name="guide">Guide</string>
+    <string name="overview">Overview</string>
+    <string name="speech_recognition">Speech Recognition</string>
+    <string name="fall_detection">Fall Detection</string>
+    <string name="battery_manager">Battery Manager</string>
+    <string name="activation_process">Activation Process</string>
+
+    <string name="update_details_guide">Update Details</string>
+
+    <string name="overview_guide">
+        “Nidar - Universal Safety Application” is a personal safety and security application. It takes the necessary actions
+        to bring effective help to you. This includes sending alert messages and siren alarm.
+    </string>
+    <string name="speech_recognition_guide">
+        NIDAR can be activated by voice commands. You only need to say \"\", \"\", \"\", \"\". It is better to say one of these keywords multiple
+        times to have higher chance of getting NIDAR activated. Speech Recognition will work even when your mobile phone is locked or
+        is kept away from you. Once any of the defined keywords are detected, a dialog will be prompted asking for the same.
+        If dialog is not answered within a time frame, an alert message will be send containing your location.
+    </string>
+    <string name="fall_detection_guide">
+        NIDAR also detects when you fall. Once, a fall is detected, a dialog will be prompted asking for the same.
+        If dialog is not answered within a time frame, an alert message will be send containing your location.
+    </string>
+    <string name="battery_manager_guide">
+        NIDAR keeps track of your battery level. When the battery level is too low, a dialog will be prompted asking for the same.
+        If dialog is not answered within a time frame, an alert message will be send containing your location.
+    </string>
+    <string name="activation_process_guide">
+        To start "Speech Recognition", "Fall Detection", "Battery Manager", just click on the buttons on the main activity. Once clicked,
+        all the services will be activated and will ensure your security. The timings for the alert dialog will be for about 15 seconds.
+        You can also update the contact details by clicking on the "Update Details" button.
+    </string>
+
+    <string name="developed_by">Developed By</string>
+    <string name="supervised_by">Supervised By</string>
+
+
 </resources>

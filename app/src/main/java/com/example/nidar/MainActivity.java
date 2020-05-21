@@ -82,11 +82,20 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.nav_help_feedback) {
             Toast.makeText(this, "Help and Feedback", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(MainActivity.this, HelpFeedback.class));
             return true;
         }
 
         if (id == R.id.about) {
+            Toast.makeText(this, "Help and Feedback", Toast.LENGTH_LONG).show();
             startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
+
+            return true;
+        }
+
+        if (id == R.id.guide) {
+            Toast.makeText(this, "Guide", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(MainActivity.this, Guide.class));
             return true;
         }
 

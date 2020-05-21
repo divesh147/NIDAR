@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center"
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,27 +26,26 @@
                     android:layout_height="?attr/actionBarSize"
                     app:title="@string/app_name"
                     app:titleTextColor="#000000"
-                    app:menu="@menu/menu_items"
                     style="@style/Widget.MaterialComponents.Toolbar.Primary"/>
             </com.google.android.material.appbar.AppBarLayout>
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="20dp"
+            android:gravity="center"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <Button
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:fontFamily="sans-serif-black"
-                android:background="@drawable/decor"
-                android:textSize="9pt"
-                android:padding="5pt"
-                android:text="Developed by :-"
-                android:textColor="@color/textColor"/>
+                android:text="@string/developed_by"
+                android:textSize="20dp"
+                android:background="@drawable/button_shape"
+                android:layout_marginBottom="10dp"
+                android:textColor="#000" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -111,14 +110,15 @@
             </LinearLayout>
 
 
-            <TextView
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-black"
-                android:textColor="@color/colorPrimary"
-                android:layout_margin="20dp"
-                android:textSize="10pt"
-                android:text="Supervised by :-"/>
+                android:text="@string/supervised_by"
+                android:textSize="20dp"
+                android:background="@drawable/button_shape"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:textColor="#000" />
 
             <LinearLayout
                 android:layout_width="match_parent"

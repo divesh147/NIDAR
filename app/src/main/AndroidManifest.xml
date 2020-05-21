@@ -45,6 +45,8 @@
             android:taskAffinity=""
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".Guide"/>
+        <activity android:name=".HelpFeedback"/>
 
         <service android:name=".SpeechService" android:exported="false"/>
         <service android:name=".FallService" android:exported="false"/>
