@@ -3,10 +3,13 @@ package com.example.nidar;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,6 +19,9 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -39,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     boolean flag = false;
     Hashtable<String, Integer> permissionCheck;
     private static boolean voiceBtn, batteryBtn, fallBtn;
+    Toolbar toolbar;
 
 
     @Override
@@ -47,11 +54,58 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         pref = getSharedPreferences("NIDAR", MODE_PRIVATE);
 
+        toolbar = findViewById(R.id.topAppBar);
+        setSupportActionBar(toolbar);
+
         mainScreenDecider();
         requestPermissions();
         enableLocation();
     }
 
+
+    @SuppressLint("RestrictedApi")
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_items, menu);
+
+        if(menu instanceof MenuBuilder){
+            MenuBuilder m = (MenuBuilder) menu;
+            m.setOptionalIconsVisible(true);
+        }
+
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.nav_help_feedback) {
+            Toast.makeText(this, "Help and Feedback", Toast.LENGTH_LONG).show();
+            return true;
+        }
+
+        if (id == R.id.about) {
+            Toast.makeText(this, "About", Toast.LENGTH_LONG).show();
+            return true;
+        }
+
+        if (id == R.id.nav_invite_friends) {
+            Toast.makeText(this, "Invite Friends", Toast.LENGTH_LONG).show();
+            return true;
+        }
+
+        if (id == R.id.nav_signout) {
+            FirebaseAuth.getInstance().signOut();
+            resetData();
+            Toast.makeText(MainActivity.this,"User Signed Out", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainActivity.this, MainActivity.class));
+            finish();
+            return true;
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
 
     // Initialise Different View Items
     private void findViews() {
@@ -59,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         btnSpeechRecognition = findViewById(R.id.btn_speech_recognition);
         btnLowBattery = findViewById(R.id.btn_low_battery_message);
         btnFallDetection = findViewById(R.id.btn_fall_detection);
-        btnSignOut = findViewById(R.id.btn_sign_out);
+        //btnSignOut = findViewById(R.id.btn_sign_out);
     }
 
 
@@ -186,16 +240,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnSignOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                resetData();
-                Toast.makeText(MainActivity.this,"User Signed Out", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this, MainActivity.class));
-                finish();
-            }
-        });
+//        btnSignOut.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FirebaseAuth.getInstance().signOut();
+//                resetData();
+//                Toast.makeText(MainActivity.this,"User Signed Out", Toast.LENGTH_SHORT).show();
+//                startActivity(new Intent(MainActivity.this, MainActivity.class));
+//                finish();
+//            }
+//        });
     }
 
 
@@ -300,5 +354,11 @@ public class MainActivity extends AppCompatActivity {
 
         if(flag)
             requestPermissions();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i("In Main Activity", "Here");
     }
 }

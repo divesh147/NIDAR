@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,8 +36,8 @@ public class SignedIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signed_in);
-        findViews();
 
+        findViews();
         mDatabase = FirebaseDatabase.getInstance();
         databaseReference = mDatabase.getReference("contacts");
         pref = getSharedPreferences("NIDAR", MODE_PRIVATE);
@@ -61,6 +62,17 @@ public class SignedIn extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        Intent intent = new Intent(this, MainActivity.class);
+        overridePendingTransition(0, 0);
+        startActivity(intent);
+        finish();
+
     }
 
     // Initialise Different View Items

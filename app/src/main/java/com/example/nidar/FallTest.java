@@ -95,37 +95,37 @@ public class FallTest extends Service implements SensorEventListener {
 
 
     // TODO DELETE THIS LOG MESS
-    public void appendLog(String text) {
-        Log.i(LOG_TAG, "appendLog");
-        File logFile = new File("sdcard/log.txt");
-        if (!logFile.exists()) {
-            try {
-                Log.i(LOG_TAG, "FileCreated");
-                logFile.createNewFile();
-            }
-            catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-        try {
-            //BufferedWriter for performance, true to set append to file flag
-            Log.i(LOG_TAG, "dataWritten");
-            BufferedWriter buf = new BufferedWriter(new FileWriter(logFile, true));
-            buf.append(text);
-            buf.newLine();
-            buf.close();
-        }
-        catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
+//    public void appendLog(String text) {
+//        Log.i(LOG_TAG, "appendLog");
+//        File logFile = new File("sdcard/log.txt");
+//        if (!logFile.exists()) {
+//            try {
+//                Log.i(LOG_TAG, "FileCreated");
+//                logFile.createNewFile();
+//            }
+//            catch (IOException e) {
+//                // TODO Auto-generated catch block
+//                e.printStackTrace();
+//            }
+//        }
+//        try {
+//            //BufferedWriter for performance, true to set append to file flag
+//            Log.i(LOG_TAG, "dataWritten");
+//            BufferedWriter buf = new BufferedWriter(new FileWriter(logFile, true));
+//            buf.append(text);
+//            buf.newLine();
+//            buf.close();
+//        }
+//        catch (IOException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//    }
 
 
     @Override
     public void onSensorChanged(final SensorEvent event) {
-        appendLog( " In FallTest ");
+//        appendLog( " In FallTest ");
         run_count++;
         if (run_count == 1) {
             timer = new CountDownTimer(5500, 100) {
@@ -133,7 +133,7 @@ public class FallTest extends Service implements SensorEventListener {
                 public void onTick(long millisUntilFinished) {
                     sum = Math.sqrt(Math.pow(event.values[0], 2) + Math.pow(event.values[1], 2) + Math.pow(event.values[2], 2));
                     time_window.add(System.currentTimeMillis());
-                    appendLog("" + sum + " " + System.currentTimeMillis());
+                    //appendLog("" + sum + " " + System.currentTimeMillis());
                     acc_window.add(sum);
                 }
 
@@ -184,6 +184,7 @@ public class FallTest extends Service implements SensorEventListener {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Log.i("In Fall Test", "OnDestroy");
         sensorManager.unregisterListener(this);
     }
 

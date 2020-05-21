@@ -76,30 +76,30 @@ public class FallService extends Service implements SensorEventListener {
 
 
     // TODO DELETE THIS LOG MESS
-    public void appendLog(String text) {
-        Log.i(LOG_TAG, "appendLog");
-        File logFile = new File("sdcard/log.txt");
-        if (!logFile.exists()) {
-            try {
-                Log.i(LOG_TAG, "FileCreated");
-                logFile.createNewFile();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-        try {
-            // BufferedWriter for performance, true to set append to file flag
-            Log.i(LOG_TAG, "dataWritten");
-            BufferedWriter buf = new BufferedWriter(new FileWriter(logFile, true));
-            buf.append(text);
-            buf.newLine();
-            buf.close();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
+//    public void appendLog(String text) {
+//        Log.i(LOG_TAG, "appendLog");
+//        File logFile = new File("sdcard/log.txt");
+//        if (!logFile.exists()) {
+//            try {
+//                Log.i(LOG_TAG, "FileCreated");
+//                logFile.createNewFile();
+//            } catch (IOException e) {
+//                // TODO Auto-generated catch block
+//                e.printStackTrace();
+//            }
+//        }
+//        try {
+//            // BufferedWriter for performance, true to set append to file flag
+//            Log.i(LOG_TAG, "dataWritten");
+//            BufferedWriter buf = new BufferedWriter(new FileWriter(logFile, true));
+//            buf.append(text);
+//            buf.newLine();
+//            buf.close();
+//        } catch (IOException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//    }
 
 
     @Override
@@ -108,7 +108,7 @@ public class FallService extends Service implements SensorEventListener {
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             sum = Math.sqrt(Math.pow(event.values[0], 2) + Math.pow(event.values[1], 2) + Math.pow(event.values[2], 2));
             currentTime = System.currentTimeMillis();
-            appendLog(String.valueOf(sum));
+            //appendLog(String.valueOf(sum));
         }
 
         /*
@@ -118,14 +118,14 @@ public class FallService extends Service implements SensorEventListener {
         T_duration   800 ms
          */
         if (sum <= T_free_fall) {
-            appendLog("Min : " + sum + " Time : " + currentTime);
+            //appendLog("Min : " + sum + " Time : " + currentTime);
             min = true;
             free_fall_time = currentTime;
         }
 
         if (min) {
             if (sum >= T_shock) {
-                appendLog("Max : " + sum + " Time : " + currentTime);
+                //appendLog("Max : " + sum + " Time : " + currentTime);
                 max = true;
                 shock_time = currentTime;
             }
@@ -133,7 +133,7 @@ public class FallService extends Service implements SensorEventListener {
 
         if (max) {
             if (shock_time - free_fall_time <= 800) {
-                appendLog("Suspected Fall");
+                //appendLog("Suspected Fall");
                 sensorManager.unregisterListener(this);
                 // Check for person unconscious behaviour
                 Intent intent = new Intent(FallService.this, FallTest.class);
@@ -167,6 +167,7 @@ public class FallService extends Service implements SensorEventListener {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Log.i("In Fall Service", "OnDestroy");
         sensorManager.unregisterListener(this);
     }
 

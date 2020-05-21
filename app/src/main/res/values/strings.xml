@@ -20,9 +20,13 @@
     <string name="problem_text"><b>Are you in a problem?</b></string>
     <string name="yes">Yes?</string>
     <string name="no">No?</string>
-    <string name="low_battery_on">Turn ON Low Battery Message</string>
-    <string name="low_battery_off">Turn OFF Low Battery Message</string>
+    <string name="low_battery_on">Turn ON Battery Manager</string>
+    <string name="low_battery_off">Turn OFF Battery Manager</string>
     <string name="fall_detection_on">Turn ON Fall Detection</string>
     <string name="fall_detection_off">Turn OFF Fall Detection</string>
     <string name="app_icon">App Icon</string>
+	<string name="menu_signout">Signout</string>
+    <string name="menu_help_feedback">Help and Feedback</string>
+    <string name="menu_invite_friends">Invite Friends</string>
+    <string name="menu_about">About</string>
 </resources>
