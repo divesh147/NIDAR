@@ -243,9 +243,7 @@ public class MainActivity extends AppCompatActivity {
     // Reset all saved data for initial Activity Deciding once again
     private void resetData() {
         editor = pref.edit();
-        editor.putBoolean("isDetailsSaved", false);
-        editor.putBoolean("isSignedIn", false);
-        editor.putString("phoneNumber", null);
+        editor.clear();
         editor.commit();
     }
 
