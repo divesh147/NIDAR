@@ -90,16 +90,11 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
-        if (id == R.id.nav_invite_friends) {
-            Toast.makeText(this, "Invite Friends", Toast.LENGTH_LONG).show();
-            return true;
-        }
-
         if (id == R.id.nav_signout) {
             FirebaseAuth.getInstance().signOut();
             resetData();
             Toast.makeText(MainActivity.this,"User Signed Out", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(MainActivity.this, MainActivity.class));
+            startActivity(new Intent(MainActivity.this, StartActivity.class));
             finish();
             return true;
         }
