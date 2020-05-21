@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     SharedPreferences pref;
     SharedPreferences.Editor editor;
-    Button btnUpdateDetails, btnSpeechRecognition, btnLowBattery, btnFallDetection, btnSignOut;
+    Button btnUpdateDetails, btnSpeechRecognition, btnLowBattery, btnFallDetection;
     BatteryLevelReceiver br;
 
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 1;
@@ -103,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -113,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
         btnSpeechRecognition = findViewById(R.id.btn_speech_recognition);
         btnLowBattery = findViewById(R.id.btn_low_battery_message);
         btnFallDetection = findViewById(R.id.btn_fall_detection);
-        //btnSignOut = findViewById(R.id.btn_sign_out);
     }
 
 
@@ -239,17 +237,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-//        btnSignOut.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FirebaseAuth.getInstance().signOut();
-//                resetData();
-//                Toast.makeText(MainActivity.this,"User Signed Out", Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(MainActivity.this, MainActivity.class));
-//                finish();
-//            }
-//        });
     }
 
 

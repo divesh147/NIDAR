@@ -11,8 +11,8 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingTop="30dp"
-        android:paddingBottom="30dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         android:background="@drawable/layout_shape"
         android:orientation="vertical">
 
@@ -22,7 +22,9 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:fontFamily="sans-serif-black"
-            android:layout_margin="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:textColor="@color/colorPrimary"
             android:textSize="10pt"
             android:text="@string/contact_details"/>
@@ -33,7 +35,9 @@
             app:startIconTint="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:autofillHints=""
             android:hint="@string/contact_phone_number1"
             app:hintTextColor="@color/colorPrimary">
@@ -53,7 +57,9 @@
             app:startIconTint="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:autofillHints=""
             android:hint="@string/contact_phone_number2"
             app:hintTextColor="@color/colorPrimary">
@@ -73,7 +79,9 @@
             app:startIconTint="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:autofillHints=""
             android:hint="@string/contact_phone_number3"
             app:hintTextColor="@color/colorPrimary">
@@ -93,7 +101,9 @@
             app:startIconTint="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:autofillHints=""
             android:hint="@string/contact_phone_number4"
             app:hintTextColor="@color/colorPrimary">
