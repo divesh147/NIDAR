@@ -57,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.topAppBar);
         setSupportActionBar(toolbar);
 
+        //Oe yha pr kr lio change ya jaise bhi tujhe krna hai
+        toolbar.setTitle(R.string.app_name);
+
         mainScreenDecider();
         requestPermissions();
         enableLocation();
