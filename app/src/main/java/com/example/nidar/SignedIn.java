@@ -72,7 +72,6 @@ public class SignedIn extends AppCompatActivity {
         overridePendingTransition(0, 0);
         startActivity(intent);
         finish();
-
     }
 
     // Initialise Different View Items

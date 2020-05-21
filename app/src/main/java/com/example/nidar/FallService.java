@@ -76,30 +76,32 @@ public class FallService extends Service implements SensorEventListener {
 
 
     // TODO DELETE THIS LOG MESS
-//    public void appendLog(String text) {
-//        Log.i(LOG_TAG, "appendLog");
-//        File logFile = new File("sdcard/log.txt");
-//        if (!logFile.exists()) {
-//            try {
-//                Log.i(LOG_TAG, "FileCreated");
-//                logFile.createNewFile();
-//            } catch (IOException e) {
-//                // TODO Auto-generated catch block
-//                e.printStackTrace();
-//            }
-//        }
-//        try {
-//            // BufferedWriter for performance, true to set append to file flag
-//            Log.i(LOG_TAG, "dataWritten");
-//            BufferedWriter buf = new BufferedWriter(new FileWriter(logFile, true));
-//            buf.append(text);
-//            buf.newLine();
-//            buf.close();
-//        } catch (IOException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-//    }
+    /*
+    public void appendLog(String text) {
+        Log.i(LOG_TAG, "appendLog");
+        File logFile = new File("sdcard/log.txt");
+        if (!logFile.exists()) {
+            try {
+                Log.i(LOG_TAG, "FileCreated");
+                logFile.createNewFile();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        try {
+            // BufferedWriter for performance, true to set append to file flag
+            Log.i(LOG_TAG, "dataWritten");
+            BufferedWriter buf = new BufferedWriter(new FileWriter(logFile, true));
+            buf.append(text);
+            buf.newLine();
+            buf.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+     */
 
 
     @Override
