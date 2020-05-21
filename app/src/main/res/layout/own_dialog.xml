@@ -10,8 +10,10 @@
         android:id="@+id/tv_problem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="10pt"
-        android:layout_margin="20dp" />
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/colorPrimary"
+        android:layout_margin="20dp"
+        android:textSize="10pt"/>
 
     <LinearLayout
         android:layout_width="match_parent"

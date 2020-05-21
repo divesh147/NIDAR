@@ -56,9 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.topAppBar);
         setSupportActionBar(toolbar);
-
-        //Oe yha pr kr lio change ya jaise bhi tujhe krna hai
-        toolbar.setTitle(R.string.app_name);
+        toolbar.setTitle("Hello " + pref.getString("name", "") + "!");
 
         mainScreenDecider();
         requestPermissions();
@@ -256,7 +254,6 @@ public class MainActivity extends AppCompatActivity {
 
         // If user is signed in and has added his/her contact details
         if (pref.getBoolean("isSignedIn", false) && pref.getBoolean("isDetailsSaved", false)) {
-            Toast.makeText(MainActivity.this,"WELCOME USER", Toast.LENGTH_SHORT).show();
             findViews();
             setViews();
             setAllButtons();
