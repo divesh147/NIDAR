@@ -120,4 +120,7 @@
     <string name="p_k_hazra">P. K. Hazra</string>
     <string name="sushila_madan">Sushila Madan</string>
 
+    <string name="auto_start_message">
+        To keep app functioning even after the app is killed. Please allow it to autorestart.
+    </string>
 </resources>

@@ -1,20 +1,11 @@
 package com.example.nidar;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuBuilder;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -28,7 +19,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
+
 import com.google.firebase.auth.FirebaseAuth;
+import com.judemanutd.autostarter.AutoStartPermissionHelper;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -47,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
     Hashtable<String, Integer> permissionCheck;
     private static boolean voiceBtn, batteryBtn, fallBtn;
     Toolbar toolbar;
+    AlertDialog.Builder builder;
+    private static boolean autorestartPermission = false;
+    Dialog dlg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +71,34 @@ public class MainActivity extends AppCompatActivity {
 
         mainScreenDecider();
         requestPermissions();
+        autoStart();
         enableLocation();
     }
 
+    private void autoStart(){
+        if(!autorestartPermission){
+            builder = new AlertDialog.Builder(this);
+            builder.setTitle("AutoRestart Permission")
+                    .setMessage(R.string.auto_start_message)
+                    .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            autorestartPermission = AutoStartPermissionHelper.getInstance().getAutoStartPermission(MainActivity.this);
+                        }
+                    })
+                    .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            return;
+                        }
+                    });
+
+            dlg = builder.create();
+            dlg.setCancelable(false);
+            dlg.setCanceledOnTouchOutside(false);
+            dlg.show();
+        }
+    }
 
     @SuppressLint("RestrictedApi")
     @Override
