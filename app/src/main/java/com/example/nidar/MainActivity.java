@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private static boolean autoRestartPermission = false;
     Dialog dlg;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,9 +76,11 @@ public class MainActivity extends AppCompatActivity {
         enableLocation();
     }
 
-    private void autoStart(){
-        if(AutoStartPermissionHelper.getInstance().isAutoStartPermissionAvailable(this)){
-            if(!(pref.getBoolean("autoRestartPermission",false))){
+
+    // Get permission to allow AutoStart of our application
+    private void autoStart() {
+        if (AutoStartPermissionHelper.getInstance().isAutoStartPermissionAvailable(this)) {
+            if (!(pref.getBoolean("autoRestartPermission",false))) {
                 builder = new AlertDialog.Builder(this);
                 builder.setTitle("AutoRestart Permission")
                         .setMessage(R.string.auto_start_message)
@@ -85,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 autoRestartPermission = AutoStartPermissionHelper.getInstance().getAutoStartPermission(MainActivity.this);
+                                //Toast.makeText(MainActivity.this, ""+AutoStartPermissionHelper.getInstance().getAutoStartPermission(MainActivity.this), Toast.LENGTH_LONG).show();
                                 editor = pref.edit();
                                 editor.putBoolean("autoRestartPermission", autoRestartPermission);
                                 editor.commit();
@@ -93,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
                         .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                return;
                             }
                         });
 
