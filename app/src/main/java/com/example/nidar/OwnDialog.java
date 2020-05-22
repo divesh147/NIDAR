@@ -48,9 +48,10 @@ public class OwnDialog extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.own_dialog);
         setFinishOnTouchOutside(false);
-        setTurnScreenOn(true);
-        setShowWhenLocked(true);
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            setTurnScreenOn(true);
+            setShowWhenLocked(true);
+        }
         audioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
         audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 8, 0);
 

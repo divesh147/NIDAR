@@ -70,6 +70,7 @@ public class SignupUser extends AppCompatActivity {
                             editor.putBoolean("isSignedIn", true);
                             editor.putString("name", name);
                             editor.putString("phoneNumber", phoneNumber);
+                            editor.putBoolean("autoRestartPermission", false);
                             editor.commit();
 
                             startActivity(new Intent(SignupUser.this, SignedIn.class));

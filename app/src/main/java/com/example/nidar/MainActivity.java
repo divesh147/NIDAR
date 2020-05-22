@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private static boolean voiceBtn, batteryBtn, fallBtn;
     Toolbar toolbar;
     AlertDialog.Builder builder;
-    private static boolean autorestartPermission = false;
+    private static boolean autoRestartPermission = false;
     Dialog dlg;
 
     @Override
@@ -76,27 +76,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void autoStart(){
-        if(!autorestartPermission){
-            builder = new AlertDialog.Builder(this);
-            builder.setTitle("AutoRestart Permission")
-                    .setMessage(R.string.auto_start_message)
-                    .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            autorestartPermission = AutoStartPermissionHelper.getInstance().getAutoStartPermission(MainActivity.this);
-                        }
-                    })
-                    .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            return;
-                        }
-                    });
+        if(AutoStartPermissionHelper.getInstance().isAutoStartPermissionAvailable(this)){
+            if(!(pref.getBoolean("autoRestartPermission",false))){
+                builder = new AlertDialog.Builder(this);
+                builder.setTitle("AutoRestart Permission")
+                        .setMessage(R.string.auto_start_message)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                autoRestartPermission = AutoStartPermissionHelper.getInstance().getAutoStartPermission(MainActivity.this);
+                                editor = pref.edit();
+                                editor.putBoolean("autoRestartPermission", autoRestartPermission);
+                                editor.commit();
+                            }
+                        })
+                        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                return;
+                            }
+                        });
 
-            dlg = builder.create();
-            dlg.setCancelable(false);
-            dlg.setCanceledOnTouchOutside(false);
-            dlg.show();
+                dlg = builder.create();
+                dlg.setCancelable(false);
+                dlg.setCanceledOnTouchOutside(false);
+                dlg.show();
+            }
         }
     }
 
