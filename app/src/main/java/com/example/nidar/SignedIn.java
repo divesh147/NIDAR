@@ -64,16 +64,6 @@ public class SignedIn extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onBackPressed()
-    {
-        super.onBackPressed();
-        Intent intent = new Intent(this, MainActivity.class);
-        overridePendingTransition(0, 0);
-        startActivity(intent);
-        finish();
-    }
-
     // Initialise Different View Items
     private void findViews() {
         contactPhoneNumber1 = findViewById(R.id.et_contact_phone_number1);

@@ -63,6 +63,10 @@ public class OwnDialog extends AppCompatActivity {
         createAlertDialog();
     }
 
+    @Override
+    public void onBackPressed() {
+        //Doing Nothing So that the dialog does not disappear on pressing the back button.
+    }
 
     // Puts up an Alert Dialog Box
     private void createAlertDialog() {

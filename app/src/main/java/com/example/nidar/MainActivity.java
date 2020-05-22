@@ -7,6 +7,7 @@ import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -17,6 +18,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     private static boolean voiceBtn, batteryBtn, fallBtn;
     Toolbar toolbar;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +58,13 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.topAppBar);
         setSupportActionBar(toolbar);
         toolbar.setTitle("Hello " + pref.getString("name", "") + "!");
+
+        Drawable drawable = toolbar.getOverflowIcon();
+        if(drawable != null) {
+            drawable = DrawableCompat.wrap(drawable);
+            DrawableCompat.setTint(drawable.mutate(), getResources().getColor(R.color.black));
+            toolbar.setOverflowIcon(drawable);
+        }
 
         mainScreenDecider();
         requestPermissions();
@@ -159,7 +167,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, SignedIn.class));
-                finish();
             }
         });
 
