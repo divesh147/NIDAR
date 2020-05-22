@@ -29,7 +29,6 @@ public class SignupUser extends AppCompatActivity {
     TextInputEditText etName, etPhoneNumber, etOTP;
     String name, phoneNumber, otp;
     FirebaseAuth auth;
-
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback;
     private String verificationCode;
 
@@ -59,6 +58,7 @@ public class SignupUser extends AppCompatActivity {
         });
     }
 
+
     // Checks whether sent OTP matches or not
     private void SigninWithPhone(PhoneAuthCredential credential) {
         auth.signInWithCredential(credential)
@@ -82,6 +82,7 @@ public class SignupUser extends AppCompatActivity {
                 });
     }
 
+
     // Initialise View Items of first Screen that is generating OTP
     private void findViews1() {
         btnGenerateOTP = findViewById(R.id.btn_generate_otp);
@@ -89,11 +90,13 @@ public class SignupUser extends AppCompatActivity {
         etPhoneNumber = findViewById(R.id.et_phone_number);
     }
 
+
     // Initialise View Items of second Screen that is validating OTP
     private void findViews2() {
         btnSignIn = findViewById(R.id.btn_sign_in);
         etOTP = findViewById(R.id.et_otp);
     }
+
 
     // Function to start phone number authentication
     private void StartFirebaseLogin() {

@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Guide extends AppCompatActivity {
+
     WebView overviewGuide, speechRecognitionGuide, fallDetectionGuide, batteryManagerGuide, activationProcessGuide;
 
     @Override

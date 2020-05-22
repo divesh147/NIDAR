@@ -31,7 +31,6 @@ public class SignedIn extends AppCompatActivity {
     FirebaseDatabase mDatabase;
     DatabaseReference databaseReference;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +63,7 @@ public class SignedIn extends AppCompatActivity {
         });
     }
 
+
     // Initialise Different View Items
     private void findViews() {
         contactPhoneNumber1 = findViewById(R.id.et_contact_phone_number1);
@@ -72,6 +72,7 @@ public class SignedIn extends AppCompatActivity {
         contactPhoneNumber4 = findViewById(R.id.et_contact_phone_number4);
         btnSaveDetails = findViewById(R.id.btn_save_details);
     }
+
 
     // Fetch Old Saved Contacts
     private void fetchOldData() {
@@ -102,6 +103,7 @@ public class SignedIn extends AppCompatActivity {
         });
     }
 
+
     // Write Contact Numbers in Firebase Realtime Database
     private void addContacts() {
         databaseReference.child(myPhoneNumber).child("1").setValue(contactNumber1);
@@ -109,6 +111,7 @@ public class SignedIn extends AppCompatActivity {
         databaseReference.child(myPhoneNumber).child("3").setValue(contactNumber3);
         databaseReference.child(myPhoneNumber).child("4").setValue(contactNumber4);
     }
+
 
     // Checks whether all Contact Numbers are valid or not
     private boolean checkAllFields() {

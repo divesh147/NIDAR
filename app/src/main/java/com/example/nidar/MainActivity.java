@@ -41,8 +41,7 @@ public class MainActivity extends AppCompatActivity {
     BatteryLevelReceiver br;
 
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 1;
-    private String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.RECORD_AUDIO, Manifest.permission.SEND_SMS,
+    private String[] permissions = { Manifest.permission.RECORD_AUDIO, Manifest.permission.SEND_SMS,
             Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     boolean flag = false;
     Hashtable<String, Integer> permissionCheck;
@@ -84,24 +83,26 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
     }
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.help_and_feedback) {
-            Toast.makeText(this, "Help and Feedback", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "Help and Feedback", Toast.LENGTH_LONG).show();
             startActivity(new Intent(MainActivity.this, HelpFeedback.class));
             return true;
         }
 
         if (id == R.id.about_us) {
-            Toast.makeText(this, "About Us", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "About Us", Toast.LENGTH_LONG).show();
             startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
             return true;
         }
 
         if (id == R.id.guide) {
-            Toast.makeText(this, "Guide", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "Guide", Toast.LENGTH_LONG).show();
             startActivity(new Intent(MainActivity.this, Guide.class));
             return true;
         }
@@ -117,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 
     // Initialise Different View Items
     private void findViews() {
@@ -180,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
                     editor = pref.edit();
                     editor.putBoolean("isSpeechOn", voiceBtn);
                     editor.commit();
+                    Toast.makeText(MainActivity.this, "Speech Recognition Stopped", Toast.LENGTH_LONG).show();
                     btnSpeechRecognition.setText(R.string.speech_on);
                     btnSpeechRecognition.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                     stopService(intent);
@@ -189,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
                     editor = pref.edit();
                     editor.putBoolean("isSpeechOn", voiceBtn);
                     editor.commit();
+                    Toast.makeText(MainActivity.this, "Speech Recognition Started", Toast.LENGTH_LONG).show();
                     btnSpeechRecognition.setText(R.string.speech_off);
                     btnSpeechRecognition.setBackgroundColor(Color.RED);
                     startService(intent);
@@ -206,6 +210,7 @@ public class MainActivity extends AppCompatActivity {
                     editor = pref.edit();
                     editor.putBoolean("isBatteryLowOn", batteryBtn);
                     editor.commit();
+                    Toast.makeText(MainActivity.this, "Battery Manager Stopped", Toast.LENGTH_LONG).show();
                     btnLowBattery.setText(R.string.low_battery_on);
                     btnLowBattery.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                     stopService(intent);
@@ -215,6 +220,7 @@ public class MainActivity extends AppCompatActivity {
                     editor = pref.edit();
                     editor.putBoolean("isBatteryLowOn", batteryBtn);
                     editor.commit();
+                    Toast.makeText(MainActivity.this, "Battery Manager Started", Toast.LENGTH_LONG).show();
                     btnLowBattery.setText(R.string.low_battery_off);
                     btnLowBattery.setBackgroundColor(Color.RED);
                     br = new BatteryLevelReceiver();
@@ -233,6 +239,7 @@ public class MainActivity extends AppCompatActivity {
                     editor = pref.edit();
                     editor.putBoolean("isFallOn", fallBtn);
                     editor.commit();
+                    Toast.makeText(MainActivity.this, "Fall Detection Stopped", Toast.LENGTH_LONG).show();
                     btnFallDetection.setText(R.string.fall_detection_on);
                     btnFallDetection.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                     stopService(intent);
@@ -242,6 +249,7 @@ public class MainActivity extends AppCompatActivity {
                     editor = pref.edit();
                     editor.putBoolean("isFallOn", fallBtn);
                     editor.commit();
+                    Toast.makeText(MainActivity.this, "Fall Detection Started", Toast.LENGTH_LONG).show();
                     btnFallDetection.setText(R.string.fall_detection_off);
                     btnFallDetection.setBackgroundColor(Color.RED);
                     startService(intent);
@@ -297,6 +305,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    // Create dialog to enable GPS
     private void enableLocation() {
         final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
@@ -325,6 +334,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    // Create dialog to request for permissions
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions, @NonNull  int[] grantResults) {

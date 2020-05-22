@@ -84,6 +84,7 @@ public class FallTest extends Service implements SensorEventListener {
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
         Toast.makeText(this, "Checking Fall", Toast.LENGTH_LONG).show();
+
         personUnconscious = false;
         acc_window = new ArrayList<>();
         time_window = new ArrayList<>();
@@ -128,6 +129,7 @@ public class FallTest extends Service implements SensorEventListener {
     @Override
     public void onSensorChanged(final SensorEvent event) {
         //appendLog( " In FallTest ");
+        // To create timer for long lie check only once
         run_count++;
         if (run_count == 1) {
             timer = new CountDownTimer(5500, 100) {

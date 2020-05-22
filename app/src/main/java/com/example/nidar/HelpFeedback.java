@@ -14,6 +14,7 @@ public class HelpFeedback extends AppCompatActivity {
 
     TextInputEditText etEmail, etFeedback;
     Button btnSend;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,13 +24,15 @@ public class HelpFeedback extends AppCompatActivity {
         setButton();
     }
 
-    private void findViews(){
+
+    private void findViews() {
         etEmail = findViewById(R.id.et_Email);
         etFeedback = findViewById(R.id.et_Feedback);
         btnSend = findViewById(R.id.btn_send);
     }
 
-    private void setButton(){
+
+    private void setButton() {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -155,7 +155,7 @@ public class FallService extends Service implements SensorEventListener {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
-        Toast.makeText(this, "Fall Service Started", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Fall Service Started", Toast.LENGTH_LONG).show();
 
         min = max = false;
         // Registering The Sensors

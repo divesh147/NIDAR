@@ -18,6 +18,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
 public class BatteryService extends Service {
+
     public static final String CHANNEL_ID = "ForegroundServiceChannel";
     BatteryLevelReceiver br;
 
@@ -57,25 +58,29 @@ public class BatteryService extends Service {
         startForeground(2, notification);
     }
 
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         br = new BatteryLevelReceiver();
-        Toast.makeText(this, "Battery Manager Started", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Battery Manager Started", Toast.LENGTH_LONG).show();
         registerReceiver(br, new IntentFilter(Intent.ACTION_BATTERY_LOW));
         return START_STICKY;
     }
+
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         unregisterReceiver(br);
-        Toast.makeText(this, "Battery Manager Stopped", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Battery Manager Stopped", Toast.LENGTH_LONG).show();
     }
+
 
     @Override
     public IBinder onBind(Intent arg0) {
         return null;
     }
+
 
     @Override
     public void onTaskRemoved(Intent intent) {

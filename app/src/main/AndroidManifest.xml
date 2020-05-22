@@ -11,8 +11,6 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -22,31 +20,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".StartActivity"
             android:screenOrientation="portrait">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".SignedIn"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".SignupUser"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".AboutUsActivity"
-            android:screenOrientation="portrait"/>
+
+        <activity android:name=".MainActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".SignedIn" android:screenOrientation="portrait"/>
+        <activity android:name=".SignupUser" android:screenOrientation="portrait"/>
+        <activity android:name=".AboutUsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".Guide" android:screenOrientation="portrait"/>
+        <activity android:name=".HelpFeedback" android:screenOrientation="portrait"/>
+
         <activity android:name=".OwnDialog"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog"
             android:excludeFromRecents="true"
             android:showOnLockScreen="true"
             android:launchMode="singleTask"
             android:taskAffinity=""
-            android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".Guide"/>
-        <activity android:name=".HelpFeedback"/>
+            android:screenOrientation="portrait"/>
 
         <service android:name=".SpeechService" android:exported="false"/>
         <service android:name=".FallService" android:exported="false"/>
@@ -54,5 +50,4 @@
         <service android:name=".BatteryService" android:exported="false"/>
         <receiver android:name=".BatteryLevelReceiver"/>
     </application>
-
 </manifest>

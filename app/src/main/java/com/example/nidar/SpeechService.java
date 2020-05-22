@@ -211,7 +211,7 @@ public class SpeechService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
-        Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
         //Adding keywords
         keyWords = new String [] {"help me",  "help me please", "bachao bachao", "bachao mujhe",
                 "chor se bacho", "please"};
@@ -228,7 +228,7 @@ public class SpeechService extends Service {
         super.onDestroy();
         if (speech!=null)
             speech.destroy();
-        Toast.makeText(this, "Service Stopped", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Service Stopped", Toast.LENGTH_LONG).show();
     }
 
 
