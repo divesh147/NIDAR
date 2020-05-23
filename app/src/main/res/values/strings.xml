@@ -59,7 +59,7 @@
             <html>
                 <head></head>
                 <body style="text-align:justify;color:black;">
-                    NIDAR can be activated by voice commands. You only need to say “”, “”, “”, “”. It is
+                    NIDAR can be activated by voice commands. You only need to say “SOS”, “Help Me”, “Nidar” or “Mayday”. It is
                     better to say one of these keywords multiple times to have a higher chance of getting NIDAR
                     activated. Speech Recognition will work even when your mobile phone is locked or is kept away
                     from you. Once any of the defined keywords are detected, a dialog will be prompted asking for

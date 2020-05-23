@@ -213,8 +213,7 @@ public class SpeechService extends Service {
         super.onStartCommand(intent, flags, startId);
         //Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show();
         //Adding keywords
-        keyWords = new String [] {"help me",  "help me please", "bachao bachao", "bachao mujhe",
-                "chor se bacho", "please"};
+        keyWords = new String [] {"help me", "sos", "mayday", "nidar", "bachao bachao", "bachao mujhe", "chor se bacho"};
 
         resetSpeechRecognizer();
         setRecogniserIntent();
