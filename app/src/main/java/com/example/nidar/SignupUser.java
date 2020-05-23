@@ -106,7 +106,15 @@ public class SignupUser extends AppCompatActivity {
 
             @Override
             public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-                Toast.makeText(SignupUser.this,"Verification Completed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignupUser.this,"User already authenticated", Toast.LENGTH_SHORT).show();
+                editor = pref.edit();
+                editor.putBoolean("isSignedIn", true);
+                editor.putString("name", name);
+                editor.putString("phoneNumber", phoneNumber);
+                editor.putBoolean("autoRestartPermission", false);
+                editor.commit();
+                startActivity(new Intent(SignupUser.this, SignedIn.class));
+                finish();
             }
 
             @Override

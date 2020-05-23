@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                                 autoRestartPermission = AutoStartPermissionHelper.getInstance().getAutoStartPermission(MainActivity.this);
                                 //Toast.makeText(MainActivity.this, ""+AutoStartPermissionHelper.getInstance().getAutoStartPermission(MainActivity.this), Toast.LENGTH_LONG).show();
                                 editor = pref.edit();
-                                editor.putBoolean("autoRestartPermission", autoRestartPermission);
+                                editor.putBoolean("autoRestartPermission", true);
                                 editor.commit();
                             }
                         })
