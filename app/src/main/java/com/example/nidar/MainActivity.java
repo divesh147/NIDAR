@@ -72,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
 
         mainScreenDecider();
         requestPermissions();
-        autoStart();
-        enableLocation();
     }
 
 
@@ -394,8 +392,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        if(flag)
+        if (flag)
             requestPermissions();
+        enableLocation();
+        autoStart();
     }
 
     @Override

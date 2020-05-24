@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:text="@string/developed_by"
             android:textSize="20dp"
-            android:background="@drawable/decor"
+            android:background="@drawable/button_shape"
             android:layout_marginBottom="10dp"
             android:textColor="#000000"/>
 
@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:text="@string/supervised_by"
             android:textSize="20dp"
-            android:background="@drawable/decor"
+            android:background="@drawable/button_shape"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="20dp"
             android:textColor="#000000"/>
